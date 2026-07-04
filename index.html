@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GrowthPilot AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div class="container" id="loginPage">
+    <h1>GrowthPilot AI 🚀</h1>
+    <p>AI Boardroom for Business Growth</p>
+
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="showOnboarding()">Login</button>
+  </div>
+
+  <!-- ONBOARDING PAGE -->
+  <div class="container hidden" id="onboardingPage">
+    <h2>Business Onboarding</h2>
+
+    <input type="text" id="bname" placeholder="Business Name">
+    <input type="text" id="btype" placeholder="Business Type">
+    <input type="number" id="revenue" placeholder="Monthly Revenue">
+    <input type="number" id="employees" placeholder="Number of Employees">
+
+    <textarea id="challenges" placeholder="Current Challenges"></textarea>
+
+    <button onclick="analyzeBusiness()">Analyze My Business</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Boardroom Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>🤖 AI Boardroom Dashboard</h1>
+
+  <!-- BUSINESS OVERVIEW -->
+  <div class="card">
+    <h2>🏢 Business Overview</h2>
+    <p id="bizInfo"></p>
+  </div>
+
+  <!-- CEO -->
+  <div class="card">
+    <h2>👔 CEO Agent</h2>
+    <p id="ceo"></p>
+  </div>
+
+  <!-- MARKETING -->
+  <div class="card">
+    <h2>📢 Marketing Agent</h2>
+    <p id="marketing"></p>
+  </div>
+
+  <!-- FINANCE -->
+  <div class="card">
+    <h2>💰 Finance Agent</h2>
+    <p id="finance"></p>
+  </div>
+
+  <!-- SALES -->
+  <div class="card">
+    <h2>🛒 Sales Agent</h2>
+    <p id="sales"></p>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="card">
+    <h2>🧭 Strategy Agent</h2>
+    <p id="strategy"></p>
+  </div>
+
+  <!-- COORDINATOR -->
+  <div class="card">
+    <h2>🧠 Coordinator AI Summary</h2>
+    <p id="summary"></p>
+  </div>
+
+  <!-- COPILOT -->
+  <div class="card">
+    <h2>💬 AI Copilot</h2>
+
+    <input id="userQuestion" placeholder="Ask your AI Boardroom..." style="width:80%; padding:10px;">
+    <button onclick="askAI()">Ask</button>
+
+    <p id="aiResponse" style="margin-top:10px;"></p>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const data = JSON.parse(localStorage.getItem("businessData"));
+
+    if (!data) {
+      document.body.innerHTML = "<h2>No data found. Please go back and fill onboarding form.</h2>";
+    } else {
+
+      // BUSINESS INFO
+      document.getElementById("bizInfo").innerText =
+        `Name: ${data.name} | Type: ${data.type} | Revenue: ${data.revenue} | Employees: ${data.employees}`;
+
+      // CEO
+      document.getElementById("ceo").innerText =
+        `CEO focus: Scale ${data.type} business and improve long-term growth strategy.`;
+
+      // MARKETING
+      document.getElementById("marketing").innerText =
+        `Marketing focus: Solve "${data.challenges}" using digital ads and social media growth.`;
+
+      // FINANCE
+      document.getElementById("finance").innerText =
+        `Finance focus: Optimize costs based on revenue ${data.revenue} and improve profit margins.`;
+
+      // SALES
+      document.getElementById("sales").innerText =
+        `Sales focus: Increase conversions and expand customer base in ${data.type}.`;
+
+      // STRATEGY
+      document.getElementById("strategy").innerText =
+        `Strategy focus: Build scalable roadmap and competitive advantage.`;
+
+      // SUMMARY
+      document.getElementById("summary").innerText =
+        `Your ${data.type} business has strong potential. Focus on marketing + cost optimization for faster growth.`;
+    }
+
+    // COPILOT FUNCTION
+    function askAI() {
+      const data = JSON.parse(localStorage.getItem("businessData"));
+      const q = document.getElementById("userQuestion").value.toLowerCase();
+
+      let response = "";
+
+      if (q.includes("revenue")) {
+        response = `To increase revenue, focus on upselling and new customer acquisition for ${data.type}.`;
+      }
+      else if (q.includes("risk")) {
+        response = `Your biggest risk is: "${data.challenges}". Fix this first for stable growth.`;
+      }
+      else if (q.includes("marketing")) {
+        response = `Use social media campaigns and targeted ads to grow your ${data.type} business.`;
+      }
+      else if (q.includes("sales")) {
+        response = `Improve sales by optimizing your funnel and targeting high-value customers.`;
+      }
+      else {
+        response = `Based on your data, focus on growth, marketing, and cost optimization.`;
+      }
+
+      document.getElementById("aiResponse").innerText = response;
+    }
+  </script>
+
+</body>
+</html>
